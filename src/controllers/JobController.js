@@ -3,27 +3,6 @@ const JobUtils = require('../utils/JobUtils')
 const Profile = require('../model/Profile')
 
 module.exports = {
-    index(req, res){
-
-        jobs = Job.get()
-        profile = Profile.get()
-
-        const updatedJobs = jobs.map((job) => {
-            // ajustes ap jobs     
-            const remaining = JobUtils.remainingDays(job)
-            const status = remaining <= 0 ? "done" : "progress"
-        
-            return {
-                ...job, /* espalha todo o objeto com ... , adiciona o remaining e cria um array novo chamado updatedJobs */
-                remaining,
-                status,
-                budget: JobUtils.calculateBudget(job, profile["value-hour"])
-            } 
-        })
-        
-        return res.render("index", { jobs: updatedJobs }) /*jobs é o nome que o updatedjobs vai ter no index, se a variavel a ser passada fosse a mesma do index, seria apenas jobs sem o : seguido do outro nome*/
-    },
-
     save(req, res){
         const jobs = Job.get()
         // Verifica se existe job no array, se nao existe, coloca 1 no ID do primeiro job que vai ser criado
