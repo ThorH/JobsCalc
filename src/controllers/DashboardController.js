@@ -38,8 +38,6 @@ module.exports = {
         // quantidade de  horas que quero trabalhar menos a quantidade de horas/dia de cada job em progress
         const freeHours = profile["hours-per-day"] - jobTotalHours;
 
-        /* oia a modificação ai gente */
-
         return res.render("index", { jobs: updatedJobs, profile: profile, statusCount: statusCount, freeHours: freeHours }) /*jobs é o nome que o updatedjobs vai ter no index, se a variavel a ser passada fosse a mesma do index, seria apenas jobs sem o : seguido do outro nome*/
     }
 }
